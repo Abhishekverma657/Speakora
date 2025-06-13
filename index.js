@@ -25,16 +25,17 @@ io.on("connection", (socket) => {
   });
 
  socket.on("offer", (data) => {
-  socket.to(data.roomId).emit("offer", data); // <-- yahan sirf data.sdp nahi, pura data bhejo
+  console.log("Offer received on server:", data);
+  socket.to(data.roomId).emit("offer", data);
 });
-
 socket.on("answer", (data) => {
-  socket.to(data.roomId).emit("answer", data); // <-- yahan bhi pura data bhejo
+  console.log("Answer received on server:", data);
+  socket.to(data.roomId).emit("answer", data);
 });
-
-  socket.on("ice-candidate", (data) => {
-    socket.to(data.roomId).emit("ice-candidate", data.candidate);
-  });
+socket.on("ice-candidate", (data) => {
+  console.log("ICE candidate received on server:", data);
+  socket.to(data.roomId).emit("ice-candidate", data);
+});
 });
 
 server.listen(3000, () => {
