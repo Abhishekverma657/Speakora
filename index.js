@@ -37,6 +37,10 @@ socket.on("ice-candidate", (data) => {
   socket.to(data.roomId).emit("ice-candidate", data);
 });
 });
+// get route for testing
+app.get("/", (req, res) => {
+  res.send("Socket.IO signaling server is running");
+});
 
 server.listen(3000, () => {
   console.log("Socket.IO signaling server running on port 3000");
