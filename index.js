@@ -15,6 +15,7 @@ const io = new Server(server, {
   }
 });
 
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
@@ -23,13 +24,13 @@ io.on("connection", (socket) => {
     console.log(`User ${socket.id} joined room ${roomId}`);
   });
 
-  socket.on("offer", (data) => {
-    socket.to(data.roomId).emit("offer", data.sdp);
-  });
+ socket.on("offer", (data) => {
+  socket.to(data.roomId).emit("offer", data); // <-- yahan sirf data.sdp nahi, pura data bhejo
+});
 
-  socket.on("answer", (data) => {
-    socket.to(data.roomId).emit("answer", data.sdp);
-  });
+socket.on("answer", (data) => {
+  socket.to(data.roomId).emit("answer", data); // <-- yahan bhi pura data bhejo
+});
 
   socket.on("ice-candidate", (data) => {
     socket.to(data.roomId).emit("ice-candidate", data.candidate);
