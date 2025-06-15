@@ -37,6 +37,7 @@ socket.on("ice-candidate", (data) => {
   socket.to(data.roomId).emit("ice-candidate", data);
 });
 socket.on("call-ended", (data) => {
+  console.log("Call ended in room:", data.roomId);
   socket.to(data.roomId).emit("call-ended");
 });
 });
