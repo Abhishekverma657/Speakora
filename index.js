@@ -45,7 +45,8 @@ socket.on("call-ended", (data) => {
 app.get("/", (req, res) => {
   res.send("Socket.IO signaling server is running");
 });
+const PORT = process.env.PORT || 3000;
 
-server.listen(3000, () => {
+server.listen(PORT, () => {
   console.log("Socket.IO signaling server running on port 3000");
 });
