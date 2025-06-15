@@ -36,6 +36,9 @@ socket.on("ice-candidate", (data) => {
   console.log("ICE candidate received on server:", data);
   socket.to(data.roomId).emit("ice-candidate", data);
 });
+socket.on("call-ended", (data) => {
+  socket.to(data.roomId).emit("call-ended");
+});
 });
 // get route for testing
 app.get("/", (req, res) => {
